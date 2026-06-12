@@ -10,7 +10,7 @@ for many years but Deep Learning models are more commonly used now.
 
 **Methodology**
 
-Mode: I tried the classical models: USURF(upright SURF) and ORB first
+Model: I tried the classical models: USURF(upright SURF) and ORB first
 and while they were okay time wise, they were not very accurate.
 
 I then tried LoFTR and efficient LoFTR but they struggled with inlier
