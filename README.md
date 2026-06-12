@@ -13,12 +13,11 @@ for many years but Deep Learning models are more commonly used now.
 Model: I tried the classical models: USURF(upright SURF) and ORB first
 and while they were okay time wise, they were not very accurate.
 
-I then tried LoFTR and efficient LoFTR but they struggled with inlier
+Next I used LoFTR and efficient LoFTR but they struggled with inlier
 count possibly due to scale invariance in the images. Trying multiscale
 image pyramid approach slowed them down much.
 
-I then tried Superpoint, Superglue but finally settled on Lightglue due
-to much faster compute.
+I went for feature based models for being more robust to scale variance. Tried Superpoint, Superglue but finally settled on Lightglue due to its much faster compute.
 
 The pipeline has two main parts:
 
@@ -79,7 +78,7 @@ every image.
 This did not work so I tried directly adding more aggressive cleaning,
 using tile cache, tensor buffering and more precompute.
 
-This did not work due to PyTorch[']{dir="rtl"}s garbage cleaners being
+This did not work due to PyTorch's garbage cleaners being
 bad so I gave up on optimising the script and made a new stateless
 script that runs this script as a subprocess in a loop for a certain
 batch of images. This forces the os to clean up after every batch is
@@ -89,7 +88,7 @@ The main script saves the last result if existing as a vector which is
 used by the next iteration. (Changed from idx to int for json)
 
 Better solution is needed as the script needs to be loaded every time
-it[']{dir="rtl"}s run in a loop which takes time (maybe run it async?)
+its run in a loop which takes time (maybe run it async?)
 
 Now the most memory I have seen it take is nearly 6-7gb but usually
 stays around 3 gb.
